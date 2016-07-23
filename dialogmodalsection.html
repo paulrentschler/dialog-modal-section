@@ -130,7 +130,7 @@
         var $holder = $("#subform-holder");
         var $subform = $("#garage-contact-details-form form");
 
-        // create the overlay
+        // get or create the overlay
         var $overlay = $("#dialog-modal-section__overlay");
         if (!$overlay.length) {
           console.log("create overlay");
@@ -213,11 +213,19 @@
         event.preventDefault();
 
         var $garage = $("#garage-contact-details-form");
-        var $subForm = $(this).closest("form");
+        var $holder = $("#subform-holder");
+        var $overlay = $("#dialog-modal-section__overlay");
+        var $subform = $(this).closest("form");
+        var $subform_wrapper = $subform.parent();
+        var $dialog_wrapper = $("#dialog-modal-section__wrapper");
 
-        $subForm.slideUp(400, function () {
-          console.log("back in the garage");
-          $subForm.appendTo($garage);
+        $overlay.fadeTo(200, 0);
+        $holder.append($subform_wrapper.css("padding", "15px 0")).height("auto");
+        $subform_wrapper.slideUp(400, function () {
+          $overlay.hide();
+          $dialog_wrapper.remove();
+          $subform.appendTo($garage).show();
+          $subform_wrapper.remove();
         });
       });
 
