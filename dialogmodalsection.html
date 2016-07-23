@@ -121,6 +121,14 @@
           src="dialog-modal-section.js"></script>
   <script type='text/javascript'>//<![CDATA[
 
+    $(document).ready(function () {
+      $(".dms-subform button[type='submit']").on("click", function(event) {
+        event.preventDefault();
+        console.log("save changes");
+        dialogModalSection.subform_hide($(this));
+      })
+    });
+
     //]]>
   </script>
 </html>
