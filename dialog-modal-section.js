@@ -1,15 +1,13 @@
 /**
- * Manage alert messages displayed to the user at the top of the page
- *
- * @author     Paul Rentschler <par117@psu.edu>
- * @since      9 April 2014
- */
-/**
  * Make a section of a dialog modal
  *
  * When displaying a form in a modal dialog, dialogModalSection allows you to
  * display a sub-form inline with the rest of the form but in such a way that
  * the user's focus is solely on the sub-form.
+ *
+ * @author     Paul Rentschler <paul@rentschler.ws>
+ * @since      22 July 2016
+ * @license    MIT License
  */
 (function (dialogModalSection, $, undefined)
 {
@@ -21,7 +19,7 @@
         /**
          * Display a subform as modal
          */
-        $("[role='dialogmodalsection__subform-activate']").on(
+        $("[role='dms-subform-activate']").on(
             "click",
             function(event)
             {
@@ -37,7 +35,7 @@
         /**
          * Hide the modal subform
          */
-        $("[role='dialogmodalsection__subform-deactivate']").on(
+        $("[role='dms-subform-deactivate']").on(
             "click",
             function (event)
             {
@@ -63,7 +61,7 @@
      */
     dialogModalSection._get_subform_storage = function(dialog)
     {
-        return $(dialog).find("[role='dialogmodalsection__subforms']");
+        return $(dialog).find("[role='dms-subforms']");
     }
 
 
@@ -75,11 +73,11 @@
      */
     dialogModalSection._get_or_create_overlay = function ()
     {
-        var $overlay = $("#dialogmodalsection__overlay");
+        var $overlay = $("#dms-overlay");
         if (!$overlay.length) {
             var $overlay = $("<div />").attr(
                 "id",
-                "dialogmodalsection__overlay"
+                "dms-overlay"
             ).css({
                 "background-color": "#000",
                 "height": "100%",
@@ -103,7 +101,7 @@
         var $dialog = $subform.closest(".modal-dialog");
         var $location = $($subform.attr("data-location"));
         var $overlay = dialogModalSection._get_or_create_overlay();
-        var $section_wrapper = $subform.closest("[role='dialogmodalsection__wrapper']");
+        var $section_wrapper = $subform.closest("[role='dms-wrapper']");
         var $storage = dialogModalSection._get_subform_storage($dialog);
         var $subform_wrapper = $subform.parent();
 
@@ -164,7 +162,7 @@
             // create a wrapper above the overlay
             var $section_wrapper = $("<div />").attr(
                 "role",
-                "dialogmodalsection__wrapper"
+                "dms-wrapper"
             ).css({
                 "height": "100%",
                 "left": 0,
