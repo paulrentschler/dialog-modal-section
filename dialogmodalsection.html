@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      #garage-contact-details-form {
+        left: -10000px;
+        position: absolute;
+        top: 0;
+      }
+
+
+    </style>
+
+    <title>DialogModalSection</title>
+  </head>
+
+  <body>
+    <h1>Dialog Modal Section - Test Page</h1>
+    <button type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#main-modal"
+            >Launch</button>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt sem felis, at lacinia orci condimentum eu. Pellentesque vel magna enim. Phasellus vitae semper ex. Fusce feugiat lorem vitae tincidunt finibus. Duis dapibus felis felis, vel viverra risus accumsan eget. Phasellus consectetur, elit in scelerisque porta, felis purus placerat magna, at rhoncus mauris nibh pellentesque massa. Fusce ullamcorper sem ac tellus luctus, nec vehicula sapien consectetur. Donec nec lectus eget quam suscipit malesuada. Suspendisse sit amet ullamcorper est, at venenatis ligula. Vivamus sagittis vel quam hendrerit feugiat. Cras mauris mauris, molestie facilisis nunc ut, eleifend fermentum nunc. Praesent id laoreet tellus. Sed egestas in lacus sit amet tincidunt.</p>
+    <p>Phasellus ante libero, sodales at rutrum eu, commodo id metus. Sed aliquet erat orci, at egestas sapien pretium quis. Nulla eu urna est. Mauris condimentum massa leo, ut porta dui blandit vel. Phasellus laoreet commodo nisi, et blandit urna. Aenean urna ligula, varius eu velit aliquet, pretium tempus tellus. Curabitur pellentesque erat et ipsum posuere, ut imperdiet arcu lacinia. Phasellus et purus porta, imperdiet diam eget, blandit purus. Cras molestie tellus vitae justo aliquet lobortis. Praesent convallis blandit massa, at vehicula quam semper ac. Nullam eget ligula augue.</p>
+    <p>Vivamus convallis malesuada ex, eget condimentum leo consectetur non. In at ante iaculis, condimentum sapien vel, cursus diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam augue est, venenatis in massa vestibulum, posuere rhoncus ex. Nulla at nibh enim. Donec volutpat, nisl ut accumsan pellentesque, enim eros cursus sapien, id rutrum leo urna vel diam. Praesent mauris est, vehicula quis mauris ut, malesuada vestibulum turpis. Morbi porttitor arcu ac dolor suscipit, eget lobortis arcu semper. Sed a libero quis eros semper imperdiet. Praesent gravida nisl at maximus maximus.</p>
+    <p>Aliquam quis mauris tortor. Donec semper finibus odio. Curabitur nibh mi, pharetra eu molestie eu, lacinia eu sem. Proin placerat commodo augue, quis luctus felis semper sed. Pellentesque vel urna at enim porta pretium et id ex. Proin sodales ligula ante, mollis pellentesque justo mattis sit amet. Suspendisse rhoncus porta venenatis. Mauris porta euismod eros eget bibendum. Mauris ac nulla nisl. Donec at eleifend libero, in facilisis leo. Maecenas lacinia sapien nec orci aliquet varius. Integer porta rhoncus nulla. Praesent pharetra vitae velit fringilla malesuada.</p>
+    <p>In eget dolor congue ex sagittis egestas. Quisque euismod fringilla metus et elementum. Ut sit amet nisl justo. Etiam ipsum tellus, feugiat ut arcu tempor, sodales sagittis felis. Aliquam dui tortor, auctor eu sodales sit amet, sollicitudin ac nunc. Nulla ac nulla a tortor sodales malesuada eget eget massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce rutrum imperdiet gravida. Vivamus ornare et tortor a gravida. Pellentesque volutpat, libero nec sollicitudin bibendum, diam ligula lobortis justo, malesuada luctus libero libero sit amet ligula. Duis tortor nisl, laoreet ultrices pretium tempus, sodales vel neque. Nam tristique luctus purus eget viverra. Quisque et felis varius, convallis libero vel, pulvinar nisl. Nunc rutrum enim a luctus aliquam. Donec tempor arcu id commodo facilisis.</p>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="main-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Main Modal Dialog</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <p>
+                <button class="btn btn-default btn-sm"
+                        id="test-button"
+                        >Edit address</button>
+                <div id="subform-holder"></div>
+              </p>
+              <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" id="exampleInputFile">
+                <p class="help-block">Example block-level help text here.</p>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Check me out
+                </label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+
+          <div id="garage-contact-details-form" class="hide">
+            <form id="contact-details">
+              <div class="form-group">
+                <label for="exampleAddress">Address</label>
+                <input type="text" class="form-control" id="exampleAddress" placeholder="321 Boucke">
+              </div>
+              <div class="form-group">
+                <label for="exampleCity">City</label>
+                <input type="text" class="form-control" id="exampleCity" placeholder="University Park">
+              </div>
+              <div class="form-group">
+                <label for="exampleState">State</label>
+                <input type="text" class="form-control" id="exampleState" placeholder="PA">
+              </div>
+              <div class="form-group">
+                <label for="examplePostalCode">Postal code</label>
+                <input type="text" class="form-control" id="examplePostalCode" placeholder="16802">
+              </div>
+
+              <div>
+                <button type="button" class="btn btn-default btn-sm">Close</button>
+                <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+
+
+  <script type='text/javascript'>//<![CDATA[
+    function DialogModalSection_activate ($section) {
+
+
+    }
+
+
+
+    $(document).ready(function(){
+      $("#garage-contact-details-form form").hide();
+
+
+      /**
+       * SHOW THE SUB-FORM
+       */
+      $("#test-button").on("click", function (event) {
+        event.preventDefault();
+
+        var $garage = $("#garage-contact-details-form");
+        var $dialog_holder = $(this).closest("[role='dialog']");
+        var $dialog = $dialog_holder.find(".modal-dialog");
+        var $holder = $("#subform-holder");
+        var $subForm = $("#garage-contact-details-form form");
+
+        // create the overlay
+        var $overlay = $("#dialog-modal-section__overlay");
+        if (!$overlay.length) {
+          console.log("create overlay");
+          var $overlay = $("<div />").attr(
+            "id",
+            "dialog-modal-section__overlay"
+          ).attr(
+            "style",
+            "background-color: #000; height: 100%; left: 0; "
+              + "position: absolute; top: 0; width: 100%; "
+              + "z-index: 2000; opacity: 0; filter:alpha(opacity=0);"
+          ).appendTo("body").hide();
+        }
+
+        // make room for the the sub-form
+        $garage.removeClass("hide");
+        $subForm.show();
+        var $placeholder = $("<div />").height(
+          parseInt($subForm.height()) + 20
+        ).appendTo($garage);
+        $placeholder.hide();
+        $placeholder.appendTo($holder).slideDown(200, function () {
+          // determine the vertical offset needed
+          var $element = $holder;
+          var vertical_offset = 0;
+          while (2) {
+            vertical_offset += $element.position().top;
+            $element = $element.parent();
+            if ($element.hasClass("modal-dialog")) {
+              break;
+            }
+          }
+          console.log(vertical_offset);
+
+          // display the overlay
+          $overlay.appendTo($dialog).show().height($dialog.height());
+
+          // create a wrapper above the overlay
+          var $dialog_wrapper = $("<div />").attr(
+            "id",
+            "dialog-modal-section__wrapper"
+          ).attr(
+            "style",
+            "height: 100%; left: 0; position: absolute; top: 0; "
+              + "width: 100%; z-index: 2040; "
+              + "opacity: 1; filter:alpha(opacity=100);"
+          ).appendTo($dialog);
+
+          // wrap the sub-form in several divs to be able to display
+          //  and position it
+          var $subFormHolder = $("<div />").attr(
+            "style",
+            "margin: 2px auto; z-index: 2050;"
+              + "padding-top: " + vertical_offset + "px;"
+          ).width(parseInt($dialog.width()) - 4).append(
+            $("<div />").attr(
+              "style",
+              "background-color: #FFF; padding: 10px;"
+            ).append($subForm)
+          );
+
+          $subFormHolder.appendTo($dialog_wrapper);
+          $subForm.hide().slideDown();
+          $overlay.attr(
+            "style",
+            "background-color: #000; height: 100%; left: 0; "
+              + "position: absolute; top: 0; width: 100%; "
+              + "z-index: 2000; opacity: 0.5; filter:alpha(opacity=50);"
+          );
+
+
+        });
+        $garage.addClass("hide");
+      });
+
+
+      /**
+       * HIDE THE SUB-FORM
+       */
+      $("form#contact-details button[type='button']").on("click", function (event) {
+        event.preventDefault();
+
+        var $garage = $("#garage-contact-details-form");
+        var $subForm = $(this).closest("form");
+
+        $subForm.slideUp(400, function () {
+          console.log("back in the garage");
+          $subForm.appendTo($garage);
+        });
+      });
+
+    });//]]>
+  </script>
+</html>
+
