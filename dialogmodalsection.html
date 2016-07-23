@@ -43,21 +43,31 @@
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
               </div>
+              <p>
+                <button class="btn btn-default btn-sm"
+                        role="dialogmodalsection__subform-activate"
+                        data-subform="#contact-details"
+                        data-location="#subform-location1"
+                        >Edit address</button>
+                <div id="subform-location1"></div>
+              </p>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
               </div>
-              <p>
-                <button class="btn btn-default btn-sm"
-                        id="test-button"
-                        >Edit address</button>
-                <div id="subform-holder"></div>
-              </p>
               <div class="form-group">
                 <label for="exampleInputFile">File input</label>
                 <input type="file" id="exampleInputFile">
                 <p class="help-block">Example block-level help text here.</p>
               </div>
+              <p>
+                <button class="btn btn-default btn-sm"
+                        role="dialogmodalsection__subform-activate"
+                        data-subform="#contact-details"
+                        data-location="#subform-location2"
+                        >Edit address</button>
+                <div id="subform-location2"></div>
+              </p>
               <div class="checkbox">
                 <label>
                   <input type="checkbox"> Check me out
@@ -70,7 +80,7 @@
             </div>
           </form>
 
-          <div id="garage-contact-details-form" class="hide">
+          <div role="dialogmodalsection__subforms" class="hide">
             <form id="contact-details">
               <div class="form-group">
                 <label for="exampleAddress">Address</label>
@@ -90,8 +100,13 @@
               </div>
 
               <div>
-                <button type="button" class="btn btn-default btn-sm">Close</button>
-                <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                <button type="button"
+                        role="dialogmodalsection__subform-deactivate"
+                        class="btn btn-default btn-sm"
+                        >Close</button>
+                <button type="submit"
+                        class="btn btn-primary btn-sm"
+                        >Save changes</button>
               </div>
             </form>
           </div>
@@ -102,123 +117,126 @@
   </body>
 
 
+  <script type="text/javascript"
+          src="dialog-modal-section.js"></script>
   <script type='text/javascript'>//<![CDATA[
 
-    $(document).ready(function(){
-      $("#garage-contact-details-form form").hide();
+    // $(document).ready(function(){
+    //   dialogSectionModal.init();
 
 
-      /**
-       * SHOW THE SUB-FORM
-       */
-      $("#test-button").on("click", function (event) {
-        event.preventDefault();
+    //   /**
+    //    * SHOW THE SUB-FORM
+    //    */
+    //   $("#test-button").on("click", function (event) {
+    //     event.preventDefault();
 
-        var $garage = $("#garage-contact-details-form");
-        var $dialog_wrapper = $(this).closest("[role='dialog']");
-        var $dialog = $dialog_wrapper.find(".modal-dialog");
-        var $holder = $("#subform-holder");
-        var $subform = $("#garage-contact-details-form form");
+    //     var $garage = $("#garage-contact-details-form");
+    //     var $dialog_wrapper = $(this).closest("[role='dialog']");
+    //     var $dialog = $dialog_wrapper.find(".modal-dialog");
+    //     var $holder = $("#subform-holder");
+    //     var $subform = $("#garage-contact-details-form form");
 
-        // get or create the overlay
-        var $overlay = $("#dialog-modal-section__overlay");
-        if (!$overlay.length) {
-          var $overlay = $("<div />").attr(
-            "id",
-            "dialog-modal-section__overlay"
-          ).css({
-            "background-color": "#000",
-            "height": "100%",
-            "left": 0,
-            "position": "absolute",
-            "top": 0,
-            "width": "100%",
-            "z-index": 2000,
-            "opacity": 0,
-          }).appendTo("body").hide();
-        }
+    //     // get or create the overlay
+    //     var $overlay = $("#dialog-modal-section__overlay");
+    //     if (!$overlay.length) {
+    //       var $overlay = $("<div />").attr(
+    //         "id",
+    //         "dialog-modal-section__overlay"
+    //       ).css({
+    //         "background-color": "#000",
+    //         "height": "100%",
+    //         "left": 0,
+    //         "position": "absolute",
+    //         "top": 0,
+    //         "width": "100%",
+    //         "z-index": 2000,
+    //         "opacity": 0,
+    //       }).appendTo("body").hide();
+    //     }
 
-        // wrap the subform to provide a background and padding
-        $subform_wrapper = $("<div />").css({
-          "background-color": "#FFF",
-          "padding": "15px 0"
-        }).hide();
-        $subform.show().appendTo($subform_wrapper);
+    //     // wrap the subform to provide a background and padding
+    //     $subform_wrapper = $("<div />").css({
+    //       "background-color": "#FFF",
+    //       "padding": "15px 0"
+    //     }).hide();
+    //     $subform.show().appendTo($subform_wrapper);
 
-        // add the wrapped subform to the dialog
-        //   this makes room for it and provides the initial visualization
-        //   of displaying the subform
-        $subform_wrapper.appendTo($holder);
-        $subform_wrapper.slideDown(200, function () {
-          // ensure the dialog doesn't collapse when the subform wrapper is
-          //   pulled out
-          $holder.height(parseInt($subform_wrapper.height()) + 24);
+    //     // add the wrapped subform to the dialog
+    //     //   this makes room for it and provides the initial visualization
+    //     //   of displaying the subform
+    //     $subform_wrapper.appendTo($holder);
+    //     $subform_wrapper.slideDown(200, function () {
+    //       // ensure the dialog doesn't collapse when the subform wrapper is
+    //       //   pulled out
+    //       $holder.height(parseInt($subform_wrapper.height()) + 24);
 
-          // determine the vertical offset needed
-          var $element = $holder;
-          var vertical_offset = 0;
-          while (2) {
-            vertical_offset += $element.position().top;
-            $element = $element.parent();
-            if ($element.hasClass("modal-dialog")) {
-              break;
-            }
-          }
+    //       // determine the vertical offset needed
+    //       var $element = $holder;
+    //       var vertical_offset = 0;
+    //       while (2) {
+    //         vertical_offset += $element.position().top;
+    //         $element = $element.parent();
+    //         if ($element.hasClass("modal-dialog")) {
+    //           break;
+    //         }
+    //       }
 
-          // display the overlay
-          $overlay.appendTo($dialog).show().height($dialog.height());
-          $overlay.fadeTo(200, 0.5);
+    //       // display the overlay
+    //       $overlay.appendTo($dialog).show().height($dialog.height());
+    //       $overlay.fadeTo(200, 0.5);
 
-          // create a wrapper above the overlay
-          var $dialog_wrapper = $("<div />").attr(
-            "id",
-            "dialog-modal-section__wrapper"
-          ).css({
-            "height": "100%",
-            "left": 0,
-            "position": "absolute",
-            "top": 0,
-            "width": "100%",
-            "z-index": 2040,
-            "opacity": 1,
-            "filter": "alpha(opacity=100)"
-          }).append(
-            $("<div />").css({
-              "margin": "2px auto",
-              "padding-top": vertical_offset,
-              "z-index": 2050
-            }).width(parseInt($dialog.width()) - 4).append(
-              $subform_wrapper.css("padding", 14)
-            )
-          ).appendTo($dialog);
-        });
-      });
+    //       // create a wrapper above the overlay
+    //       var $dialog_wrapper = $("<div />").attr(
+    //         "id",
+    //         "dialog-modal-section__wrapper"
+    //       ).css({
+    //         "height": "100%",
+    //         "left": 0,
+    //         "position": "absolute",
+    //         "top": 0,
+    //         "width": "100%",
+    //         "z-index": 2040,
+    //         "opacity": 1,
+    //         "filter": "alpha(opacity=100)"
+    //       }).append(
+    //         $("<div />").css({
+    //           "margin": "2px auto",
+    //           "padding-top": vertical_offset,
+    //           "z-index": 2050
+    //         }).width(parseInt($dialog.width()) - 4).append(
+    //           $subform_wrapper.css("padding", 14)
+    //         )
+    //       ).appendTo($dialog);
+    //     });
+    //   });
 
 
-      /**
-       * HIDE THE SUB-FORM
-       */
-      $("form#contact-details button[type='button']").on("click", function (event) {
-        event.preventDefault();
+    //   /**
+    //    * HIDE THE SUB-FORM
+    //    */
+    //   $("form#contact-details button[type='button']").on("click", function (event) {
+    //     event.preventDefault();
 
-        var $garage = $("#garage-contact-details-form");
-        var $holder = $("#subform-holder");
-        var $overlay = $("#dialog-modal-section__overlay");
-        var $subform = $(this).closest("form");
-        var $subform_wrapper = $subform.parent();
-        var $dialog_wrapper = $("#dialog-modal-section__wrapper");
+    //     var $garage = $("#garage-contact-details-form");
+    //     var $holder = $("#subform-holder");
+    //     var $overlay = $("#dialog-modal-section__overlay");
+    //     var $subform = $(this).closest("form");
+    //     var $subform_wrapper = $subform.parent();
+    //     var $dialog_wrapper = $("#dialog-modal-section__wrapper");
 
-        $overlay.fadeTo(200, 0);
-        $holder.append($subform_wrapper.css("padding", "15px 0")).height("auto");
-        $subform_wrapper.slideUp(400, function () {
-          $overlay.hide();
-          $dialog_wrapper.remove();
-          $subform.appendTo($garage).show();
-          $subform_wrapper.remove();
-        });
-      });
+    //     $overlay.fadeTo(200, 0);
+    //     $holder.append($subform_wrapper.css("padding", "15px 0")).height("auto");
+    //     $subform_wrapper.slideUp(400, function () {
+    //       $overlay.hide();
+    //       $dialog_wrapper.remove();
+    //       $subform.appendTo($garage).show();
+    //       $subform_wrapper.remove();
+    //     });
+    //   });
 
-    });//]]>
+    // });
+    //]]>
   </script>
 </html>
 
