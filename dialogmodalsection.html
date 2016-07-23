@@ -125,10 +125,10 @@
         event.preventDefault();
 
         var $garage = $("#garage-contact-details-form");
-        var $dialog_holder = $(this).closest("[role='dialog']");
-        var $dialog = $dialog_holder.find(".modal-dialog");
+        var $dialog_wrapper = $(this).closest("[role='dialog']");
+        var $dialog = $dialog_wrapper.find(".modal-dialog");
         var $holder = $("#subform-holder");
-        var $subForm = $("#garage-contact-details-form form");
+        var $subform = $("#garage-contact-details-form form");
 
         // create the overlay
         var $overlay = $("#dialog-modal-section__overlay");
@@ -137,22 +137,34 @@
           var $overlay = $("<div />").attr(
             "id",
             "dialog-modal-section__overlay"
-          ).attr(
-            "style",
-            "background-color: #000; height: 100%; left: 0; "
-              + "position: absolute; top: 0; width: 100%; "
-              + "z-index: 2000; opacity: 0; filter:alpha(opacity=0);"
-          ).appendTo("body").hide();
+          ).css({
+            "background-color": "#000",
+            "height": "100%",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+            "z-index": 2000,
+            "opacity": 0,
+          }).appendTo("body").hide();
         }
 
-        // make room for the the sub-form
-        $garage.removeClass("hide");
-        $subForm.show();
-        var $placeholder = $("<div />").height(
-          parseInt($subForm.height()) + 20
-        ).appendTo($garage);
-        $placeholder.hide();
-        $placeholder.appendTo($holder).slideDown(200, function () {
+        // wrap the subform to provide a background and padding
+        $subform_wrapper = $("<div />").css({
+          "background-color": "#FFF",
+          "padding": "15px 0"
+        }).hide();
+        $subform.show().appendTo($subform_wrapper);
+
+        // add the wrapped subform to the dialog
+        //   this makes room for it and provides the initial visualization
+        //   of displaying the subform
+        $subform_wrapper.appendTo($holder);
+        $subform_wrapper.slideDown(200, function () {
+          // ensure the dialog doesn't collapse when the subform wrapper is
+          //   pulled out
+          $holder.height(parseInt($subform_wrapper.height()) + 24);
+
           // determine the vertical offset needed
           var $element = $holder;
           var vertical_offset = 0;
@@ -163,47 +175,48 @@
               break;
             }
           }
-          console.log(vertical_offset);
 
           // display the overlay
           $overlay.appendTo($dialog).show().height($dialog.height());
+          $overlay.fadeTo(200, 0.5);
 
           // create a wrapper above the overlay
+          //var $new_subform_wrapper = $subform_wrapper.clone();
           var $dialog_wrapper = $("<div />").attr(
             "id",
             "dialog-modal-section__wrapper"
-          ).attr(
-            "style",
-            "height: 100%; left: 0; position: absolute; top: 0; "
-              + "width: 100%; z-index: 2040; "
-              + "opacity: 1; filter:alpha(opacity=100);"
+          ).css({
+            "height": "100%",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+            "z-index": 2040,
+            "opacity": 1,
+            "filter": "alpha(opacity=100)"
+          }).append(
+            $("<div />").css({
+              "margin": "2px auto",
+              "padding-top": vertical_offset,
+              "z-index": 2050
+            }).width(parseInt($dialog.width()) - 4).append(
+              $subform_wrapper.css("padding", 14)
+            )
           ).appendTo($dialog);
 
-          // wrap the sub-form in several divs to be able to display
-          //  and position it
-          var $subFormHolder = $("<div />").attr(
-            "style",
-            "margin: 2px auto; z-index: 2050;"
-              + "padding-top: " + vertical_offset + "px;"
-          ).width(parseInt($dialog.width()) - 4).append(
-            $("<div />").attr(
-              "style",
-              "background-color: #FFF; padding: 10px;"
-            ).append($subForm)
-          );
-
-          $subFormHolder.appendTo($dialog_wrapper);
-          $subForm.hide().slideDown();
-          $overlay.attr(
-            "style",
-            "background-color: #000; height: 100%; left: 0; "
-              + "position: absolute; top: 0; width: 100%; "
-              + "z-index: 2000; opacity: 0.5; filter:alpha(opacity=50);"
-          );
-
-
+          // $overlay.css({
+          //   "opacity": 0.5,
+          //   "filter": "alpha(opacity=50)"
+          // });
         });
-        $garage.addClass("hide");
+
+
+        // $garage.removeClass("hide");
+        // $subForm.show();
+        // var $placeholder = $("<div />").height(
+        //   parseInt($subForm.height()) + 20
+        // ).appendTo($garage);
+        // $placeholder.hide();
       });
 
 
