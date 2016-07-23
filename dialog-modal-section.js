@@ -40,8 +40,7 @@
             function (event)
             {
                 event.preventDefault();
-                var $subform = $(this).closest("form");
-                dialogModalSection.subform_hide($subform);
+                dialogModalSection.subform_hide($(this));
             }
         );
     }
@@ -53,6 +52,19 @@
     dialogModalSection._get_dialog = function (element)
     {
         return $(element).closest(".modal-dialog");
+    }
+
+
+    /**
+     * Returns the subform element
+     */
+    dialogModalSection._get_subform = function(element)
+    {
+        if ($(element).hasClass("dms-subform")) {
+            return $(element);
+        } else {
+            return $(element).closest(".dms-subform");
+        }
     }
 
 
@@ -96,8 +108,9 @@
     /**
      * Hide the subform within the dialog's form
      */
-    dialogModalSection.subform_hide = function($subform)
+    dialogModalSection.subform_hide = function($element)
     {
+        var $subform = dialogModalSection._get_subform($element);
         var $dialog = $subform.closest(".modal-dialog");
         var $location = $($subform.attr("data-location"));
         var $overlay = dialogModalSection._get_or_create_overlay();
