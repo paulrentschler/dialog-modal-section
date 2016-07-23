@@ -27,8 +27,8 @@
             {
                 event.preventDefault();
                 var $dialog = dialogModalSection._get_dialog($(this));
-                var $subform = $($(this).data("subform"));
-                var $location = $($(this).data("location"));
+                var $subform = $($(this).attr("data-subform"));
+                var $location = $($(this).attr("data-location"));
                 dialogModalSection.subform_show($dialog, $subform, $location);
             }
         );
@@ -101,7 +101,7 @@
     dialogModalSection.subform_hide = function($subform)
     {
         var $dialog = $subform.closest(".modal-dialog");
-        var $location = $($subform.data("location"));
+        var $location = $($subform.attr("data-location"));
         var $overlay = dialogModalSection._get_or_create_overlay();
         var $section_wrapper = $subform.closest("[role='dialogmodalsection__wrapper']");
         var $storage = dialogModalSection._get_subform_storage($dialog);
@@ -128,7 +128,7 @@
         var $overlay = dialogModalSection._get_or_create_overlay();
 
         // store the location element for this subform
-        $subform.attr("data-location", $location.attr("id"));
+        $subform.attr("data-location", "#" + $location.attr("id"));
 
         // wrap the subform to provide a background and padding
         $subform_wrapper = $("<div />").css({
